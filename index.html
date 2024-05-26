@@ -9,19 +9,46 @@
 <body>
     <div class="container">
         <div class="left-container">
-            <div class="language">
+            <div id="language-left" class="language">
                 <span>Detect Language</span>
-                <span>English</span>
-                <span>French</span>
-                <span>Spanish</span>
-                <img src="image/down-arrow.png">
+                <span data-lang="en" id="english">English</span>
+                <span data-lang="fr" id="french">French</span>
+                <select id="dropdown">
+                    <option value="es">Spanish</option>
+                        <option value="af">Afrikaans</option>
+                        <option value="sq">Albanian</option>
+                        <option value="am">Amharic</option>
+                        <option value="ar">Arabic</option>
+                        <option value="hy">Armenian</option>
+                        <option value="az">Azerbaijani</option>
+                        <option value="eu">Basque</option>
+                        <option value="be">Belarusian</option>
+                        <option value="bn">Bengali</option>
+                        <option value="bs">Bosnian</option>
+                        <option value="bg">Bulgarian</option>
+                        <option value="ca">Catalan</option>
+                        <option value="ceb">Cebuano</option>
+                        <option value="ny">Chichewa</option>
+                        <option value="zh-CN">Chinese (Simplified)</option>
+                        <option value="zh-TW">Chinese (Traditional)</option>
+                        <option value="co">Corsican</option>
+                        <option value="hr">Croatian</option>
+                        <option value="cs">Czech</option>
+                        <option value="da">Danish</option>
+                        <option value="nl">Dutch</option>
+                        <option value="eo">Esperanto</option>
+                        <option value="et">Estonian</option>
+                        <option value="tl">Filipino</option>
+                        <option value="fi">Finnish</option>
+                </select>
+                <img id="left-arrow" src="image/down-arrow.png">
             </div>
 
             <div class="left-border"></div>
 
             <div class="text-area">
-                <textarea id="" placeholder="Hello, how are you?" maxlength="500"></textarea>
-                <span>19/500</span>
+                <textarea  disabled id="text-area" placeholder="Hello, how are you?" maxlength="500"></textarea>
+                <span id="input-count">19/500</span>
             </div>
 
             <div class="left-bottom">
@@ -30,8 +57,7 @@
                 <img src="image/Copy.svg">
                 </div>
 
-                <div class="translate">
-                
+                <div id="translate-btn" class="translate">
                 <p>Translate</p>
                 </div>
             </div>
@@ -39,14 +65,41 @@
 
         <div class="right-container">
             <div class="top-bar">
-                <div class="language-right">
-                    <span>English</span>
-                    <span>French</span>
-                    <span>Spanish</span>
-                    <img src="image/down-arrow.png">
+                <div disabled id="language-right" class="language-right">
+                    <span data-lang="en" id="english-right">English</span>
+                    <span data-lang="fr" id="french-right">French</span>
+                    <select id="dropdown-right">
+                    <option value="es">Spanish</option>
+                        <option value="af">Afrikaans</option>
+                        <option value="sq">Albanian</option>
+                        <option value="am">Amharic</option>
+                        <option value="ar">Arabic</option>
+                        <option value="hy">Armenian</option>
+                        <option value="az">Azerbaijani</option>
+                        <option value="eu">Basque</option>
+                        <option value="be">Belarusian</option>
+                        <option value="bn">Bengali</option>
+                        <option value="bs">Bosnian</option>
+                        <option value="bg">Bulgarian</option>
+                        <option value="ca">Catalan</option>
+                        <option value="ceb">Cebuano</option>
+                        <option value="ny">Chichewa</option>
+                        <option value="zh-CN">Chinese (Simplified)</option>
+                        <option value="zh-TW">Chinese (Traditional)</option>
+                        <option value="co">Corsican</option>
+                        <option value="hr">Croatian</option>
+                        <option value="cs">Czech</option>
+                        <option value="da">Danish</option>
+                        <option value="nl">Dutch</option>
+                        <option value="eo">Esperanto</option>
+                        <option value="et">Estonian</option>
+                        <option value="tl">Filipino</option>
+                        <option value="fi">Finnish</option>
+                    </select>
+                    <img id="right-arrow" src="image/down-arrow.png">
                 </div>
     
-                <div class="switch-container">
+                <div id="switch-container" class="switch-container">
                     <img src="image/Horizontal_top_left_main.svg">
                 </div>
             </div>
@@ -54,7 +107,7 @@
             <div class="right-border"></div>
 
             <div class="text-area-right">
-                <textarea id="" maxlength="500"></textarea>
+                <textarea disabled id="text-area-right" maxlength="500"></textarea>
             </div>
 
             <div class="bottom-right">
@@ -65,4 +118,5 @@
         </div>
     </div>
 </body>
+<script src="script.js"></script>
 </html>
