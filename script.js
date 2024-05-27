@@ -4,6 +4,7 @@ const englishBtn = document.getElementById("english");
 const frenchBtn = document.getElementById("french");
 const dropdownLeft = document.getElementById("dropdown");
 
+
 const numberCountInput = document.getElementById("input-count");
 const translateBtn = document.getElementById("translate-btn");
 const switchContainer = document.getElementById("switch-container");
@@ -13,6 +14,7 @@ const englishBtnSecondContainer = document.getElementById("english-right");
 const frenchhBtnSecondContainer = document.getElementById("french-right");
 const dropdownRight = document.getElementById("dropdown-right");
 const textareaRight = document.getElementById("text-area-right");
+
 
 //Button Language style
 function applyButtonStyles(button) {
@@ -135,8 +137,62 @@ textareaLeft.addEventListener('input', () => {
     if (languageLeft.value && languageRight.value) {
         textareaLeft.value = textareaRight.value; 
     }
-
 });
+
+
+const letterCount = document.getElementById("input-count");
+textareaLeft.addEventListener("input", countLetter);
+function countLetter(){
+    const text = textareaLeft.value;
+    const textLength = text.length;
+   
+    letterCount.textContent = `${textLength}`;
+}
+
+const copyImgLeft = document.getElementById("copy-left");
+const copyMessageLeft = document.getElementById("copyMessage");
+
+copyImgLeft.addEventListener("click", function(){
+    navigator.clipboard.writeText(textareaLeft.value);
+    copyMessageLeft.innerHTML = `Copied!`;
+    
+    setTimeout(function() {
+        copyMessageLeft.innerHTML = ''; 
+    }, 2000);
+})
+
+const copyImgRight = document.getElementById("copy-right");
+const copyMessageRight = document.getElementById("copyMessageRight");
+
+copyImgRight.addEventListener("click", function(){
+    navigator.clipboard.writeText(textareaRight.value);
+    copyMessageRight.innerHTML = "Copied!";
+
+    setTimeout(function() {
+        copyMessageRight.innerHTML = "";
+    }, 3000);
+})
+
+const speechLeft = new SpeechSynthesisUtterance();
+const soundtranslateLeft = document.getElementById("sound-left");
+soundtranslateLeft.addEventListener("click", soundLeft)
+function soundLeft(){
+    speechLeft.text = document.getElementById("text-area").value;
+    window.speechSynthesis.speak(speechLeft);
+
+}
+
+const speechRight = new SpeechSynthesisUtterance();
+const soundtranslateRight = document.getElementById("sound-right");
+soundtranslateRight.addEventListener("click", soundRight)
+function soundRight(){
+    speechRight.text = document.getElementById("text-area-right").value;
+    const dropdownRight = document.getElementById("dropdown-right").value;
+
+    speechRight.lang = dropdownRight;
+    console.log(speechRight,"works")
+    window.speechSynthesis.speak(speechRight);
+}
 
 function decodeHTMLEntities(text) {
     const tempElement = document.createElement('textarea');

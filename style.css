@@ -198,6 +198,14 @@ body{
     padding:3px;
 }
 
+#copyMessage, #copyMessageRight{
+    color: #F9FAFB;
+    font-weight: 500;
+    font-family: "DM Sans", sans-serif;
+    display:flex;
+    align-items: center;
+}
+
 #english.active, #french.active {
     color: #F9FAFB;
     background-color: #4D5562;
