@@ -7,7 +7,7 @@ const dropdownLeft = document.getElementById("dropdown");
 
 const numberCountInput = document.getElementById("input-count");
 const translateBtn = document.getElementById("translate-btn");
-const switchContainer = document.getElementById("switch-container");
+
 
 const languageRight = document.getElementById("language-right");
 const englishBtnSecondContainer = document.getElementById("english-right");
@@ -131,6 +131,156 @@ languageRight.addEventListener('change', (event) => {
         console.log(`Selected language: ${targetLanguage}`);
     }
 });
+
+
+let englishBtnLeft = document.getElementById("english");
+let frenchBtnLeft = document.getElementById("french");
+let dropdownBtnLeft = document.getElementById("dropdown");
+
+let englishBtnRight = document.getElementById("english-right");
+let frenchhBtnRight = document.getElementById("french-right");
+let dropdownBtnRight = document.getElementById("dropdown-right");
+
+let switchContainer = document.getElementById("switch-container");
+let textareaInputLeft = document.getElementById("text-area");
+let textareaInputRight = document.getElementById("text-area-right");
+
+function applyButtonStyles(button) {
+    button.style.color = "#F9FAFB";
+    button.style.backgroundColor = "#4D5562";
+    button.style.padding = "10px";
+    button.style.borderRadius = "10px";
+}
+
+function removeButtonStyles(button) {
+    button.style.color = "";
+    button.style.backgroundColor = "";
+    button.style.padding = "";
+    button.style.borderRadius = "";
+}
+
+// Switch languages and styles
+function switchLanguages(event) {
+    const isLeftLanguageActive = englishBtnLeft.classList.contains("active") || frenchBtnLeft.classList.contains("active");
+    const isRightLanguageActive = englishBtnRight.classList.contains("active") || frenchhBtnRight.classList.contains("active");
+
+     // Switch textarea values
+     let switchValue = textareaLeft.value;
+     textareaLeft.value = textareaRight.value;
+     textareaRight.value = switchValue;
+
+    // Manually handle styles for left buttons
+    if (isLeftLanguageActive) {
+        if (englishBtnLeft.classList.contains("active")) {
+            applyButtonStyles(frenchBtnLeft);
+            removeButtonStyles(englishBtnLeft);
+            englishBtnLeft.classList.remove("active");
+            frenchBtnLeft.classList.add("active");
+        } else {
+            applyButtonStyles(englishBtnLeft);
+            removeButtonStyles(frenchBtnLeft);
+            englishBtnLeft.classList.add("active");
+            frenchBtnLeft.classList.remove("active");
+        }
+    }
+
+    // Manually handle styles for right buttons
+    if (isRightLanguageActive) {
+        if (englishBtnRight.classList.contains("active")) {
+            applyButtonStyles(frenchhBtnRight);
+            removeButtonStyles(englishBtnRight);
+            englishBtnRight.classList.remove("active");
+            frenchhBtnRight.classList.add("active");
+        } else {
+            applyButtonStyles(englishBtnRight);
+            removeButtonStyles(frenchhBtnRight);
+            englishBtnRight.classList.add("active");
+            frenchhBtnRight.classList.remove("active");
+        }
+    }
+
+    if (
+        event.target === dropdownBtnLeft ||
+        event.target === dropdownBtnRight
+    ) {
+        removeButtonStyles(englishBtnLeft);
+        removeButtonStyles(englishBtnRight);
+
+        // Switch dropdown values
+        switchDropDownsLang();
+        
+        return; 
+    }
+}
+
+function switchDropDownsLang() {
+    let switchDropdowns = dropdownBtnLeft.value;
+    dropdownBtnLeft.value = dropdownBtnRight.value;
+    dropdownBtnRight.value = switchDropdowns;
+}
+
+// Attach event listeners for the switch container
+switchContainer.addEventListener("click", switchLanguages);
+switchContainer.addEventListener("click", switchDropDownsLang);
+
+// Handle left container button clicks
+function handleLeftButtonClick(event) {
+    if (event.target === englishBtnLeft) {
+        applyButtonStyles(englishBtnLeft);
+        removeButtonStyles(frenchBtnLeft);
+        removeButtonStyles(dropdownBtnLeft);
+        englishBtnLeft.classList.add("active");
+        frenchBtnLeft.classList.remove("active");
+    } else if (event.target === frenchBtnLeft) {
+        applyButtonStyles(frenchBtnLeft);
+        removeButtonStyles(englishBtnLeft);
+        removeButtonStyles(dropdownBtnLeft);
+        frenchBtnLeft.classList.add("active");
+        englishBtnLeft.classList.remove("active");
+    }
+}
+
+// Handle right container button clicks
+function handleRightButtonClick(event) {
+    if (event.target === englishBtnRight) {
+        applyButtonStyles(englishBtnRight);
+        removeButtonStyles(frenchhBtnRight);
+        removeButtonStyles(dropdownBtnRight);
+        englishBtnRight.classList.add("active");
+        frenchhBtnRight.classList.remove("active");
+    } else if (event.target === frenchhBtnRight) {
+        applyButtonStyles(frenchhBtnRight);
+        removeButtonStyles(englishBtnRight);
+        removeButtonStyles(dropdownBtnRight);
+        frenchhBtnRight.classList.add("active");
+        englishBtnRight.classList.remove("active");
+    }
+}
+
+// Handle dropdown button clicks
+function handleDropdownClick(event) {
+    if (event.target === dropdownBtnLeft) {
+        removeButtonStyles(englishBtnLeft);
+        removeButtonStyles(frenchBtnLeft);
+        englishBtnLeft.classList.remove("active");
+        frenchBtnLeft.classList.remove("active");
+        applyButtonStyles(dropdownBtnLeft);
+    } else if (event.target === dropdownBtnRight) {
+        removeButtonStyles(englishBtnRight);
+        removeButtonStyles(frenchhBtnRight);
+        englishBtnRight.classList.remove("active");
+        frenchhBtnRight.classList.remove("active");
+        applyButtonStyles(dropdownBtnRight);
+    }
+}
+
+// Attach event listeners for individual buttons
+englishBtnLeft.addEventListener("click", handleLeftButtonClick);
+frenchBtnLeft.addEventListener("click", handleLeftButtonClick);
+englishBtnRight.addEventListener("click", handleRightButtonClick);
+frenchhBtnRight.addEventListener("click", handleRightButtonClick);
+dropdownBtnLeft.addEventListener("click", handleDropdownClick);
+dropdownBtnRight.addEventListener("click", handleDropdownClick);
 
 const textareaLeft = document.getElementById("text-area");
 textareaLeft.addEventListener('input', () => {

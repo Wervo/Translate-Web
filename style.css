@@ -206,14 +206,14 @@ body{
     align-items: center;
 }
 
-#english.active, #french.active {
+#english.active, #french.active, #french-right.active, #english-right.active {
     color: #F9FAFB;
     background-color: #4D5562;
     padding: 10px;
     border-radius: 10px;
 }
 
-#english, #french {
+#english.inactive, #french.inactive, #french-right.inactive, #english-right.inactive {
     color: #4D5562;
     background-color: transparent;
     padding: 0;
