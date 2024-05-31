@@ -10,11 +10,12 @@
     <div class="container">
         <div class="left-container">
             <div id="language-left" class="language">
-                <span>Detect Language</span>
+                <span>Detect<p>Language</p></span>
                 <span data-lang="en" id="english">English</span>
                 <span data-lang="fr" id="french">French</span>
                 <select id="dropdown">
-                    <option value="es">Spanish</option>
+                    <option id="spanish" class="placeholder" value="">Spanish</option>
+                        <option value="es">Spanish</option>
                         <option value="af">Afrikaans</option>
                         <option value="sq">Albanian</option>
                         <option value="am">Amharic</option>
@@ -41,10 +42,10 @@
                         <option value="tl">Filipino</option>
                         <option value="fi">Finnish</option>
                 </select>
-                <img id="left-arrow" src="image/down-arrow.png">
+                <img id="left-arrow" src="image/down-arrow.png" alt="dropdown language">
             </div>
 
-            <div class="left-border"></div>
+            <div id="leftborder" class="left-border"></div>
 
             <div class="text-area">
                 <textarea  disabled id="text-area" placeholder="Hello, how are you?" maxlength="500"></textarea>
@@ -53,8 +54,8 @@
 
             <div class="left-bottom">
                 <div class="bottom-image">
-                <img id="sound-left" src="image/sound_max_fill.svg">
-                <img id="copy-left" src="image/Copy.svg"><span id="copyMessage"></span>
+                <img id="sound-left" src="image/sound_max_fill.svg" alt="play sound text">
+                <img id="copy-left" src="image/Copy.svg" alt="copy text input"><span id="copyMessage"></span>
                 </div>
 
                 <div id="translate-btn" class="translate">
@@ -69,7 +70,8 @@
                     <span data-lang="en" id="english-right">English</span>
                     <span data-lang="fr" id="french-right">French</span>
                     <select id="dropdown-right">
-                    <option value="es">Spanish</option>
+                        <option value="" class="placeholder" disabled selected>Spanish</option>
+                        <option value="es">Spanish</option>
                         <option value="af">Afrikaans</option>
                         <option value="sq">Albanian</option>
                         <option value="am">Amharic</option>
@@ -96,23 +98,23 @@
                         <option value="tl">Filipino</option>
                         <option value="fi">Finnish</option>
                     </select>
-                    <img id="right-arrow" src="image/down-arrow.png">
+                    <img id="right-arrow" src="image/down-arrow.png" alt="dropdown language">
                 </div>
     
                 <div id="switch-container" class="switch-container">
-                    <img src="image/Horizontal_top_left_main.svg">
+                    <img src="image/Horizontal_top_left_main.svg" alt="switch language">
                 </div>
             </div>
 
-            <div class="right-border"></div>
+            <div id="rightborder" class="right-border"></div>
 
             <div class="text-area-right">
                 <textarea disabled id="text-area-right" maxlength="500"></textarea>
             </div>
 
             <div class="bottom-right">
-                <img id="sound-right" src="image/sound_max_fill.svg">
-                <img id="copy-right" src="image/Copy.svg"><span id="copyMessageRight"></span>
+                <img id="sound-right" src="image/sound_max_fill.svg" alt="play text sound">
+                <img id="copy-right" src="image/Copy.svg" alt="copy text input"><span id="copyMessageRight"></span>
             </div>
 
         </div>
