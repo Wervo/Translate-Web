@@ -223,86 +223,184 @@ let dropdownBtnLeftStyle = document.getElementById("dropdown");
 let textareaInputLeft = document.getElementById("text-area");
 
 let englishBtnRightStyle = document.getElementById("english-right");
-let frenchhBtnRightStyle = document.getElementById("french-right");
+let frenchBtnRightStyle = document.getElementById("french-right");
 let dropdownBtnRightStyle = document.getElementById("dropdown-right");
 let textareaInputRight = document.getElementById("text-area-right");
 
 let switchContainer = document.getElementById("switch-container");
 
+// Function to apply styles
 function applyButtonStyles(button) {
-    button.style.color = "#F9FAFB";
-    button.style.backgroundColor = "#4D5562";
-    button.style.padding = "10px";
-    button.style.borderRadius = "13px";
+    button.classList.add("active");
 }
 
+// Function to remove styles
 function removeButtonStyles(button) {
-    button.style.color = "";
-    button.style.backgroundColor = "";
-    button.style.padding = "";
-    button.style.borderRadius = "";
+    button.classList.remove("active");
 }
 
 // Switch languages and styles
 function switchLanguages(event) {
-    const isLeftLanguageActive = englishBtnLeftStyle.classList.contains("active") || frenchBtnLeftStyle.classList.contains("active");
-    const isRightLanguageActive = englishBtnRightStyle.classList.contains("active") || frenchhBtnRightStyle.classList.contains("active");
+    const isLeftEnglishActive = englishBtnLeftStyle.classList.contains("active");
+    const isLeftFrenchActive = frenchBtnLeftStyle.classList.contains("active");
+    const isLeftDropdownActive = dropdownBtnLeftStyle.classList.contains("active");
 
-     // Switch textarea values
-     let switchValue = textareaLeft.value;
-     textareaLeft.value = textareaRight.value;
-     textareaRight.value = switchValue;
+    const isRightEnglishActive = englishBtnRightStyle.classList.contains("active");
+    const isRightFrenchActive = frenchBtnRightStyle.classList.contains("active");
+    const isRightDropdownActive = dropdownBtnRightStyle.classList.contains("active");
 
-    // Manually handle styles for language left button
-    if (isLeftLanguageActive) {
-        if (englishBtnLeftStyle.classList.contains("active")) {
-            applyButtonStyles(frenchBtnLeftStyle);
-            removeButtonStyles(englishBtnLeftStyle);
-            englishBtnLeftStyle.classList.remove("active");
-            frenchBtnLeftStyle.classList.add("active");
-        } else {
-            applyButtonStyles(englishBtnLeftStyle);
-            removeButtonStyles(frenchBtnLeftStyle);
-            englishBtnLeftStyle.classList.add("active");
-            frenchBtnLeftStyle.classList.remove("active");
-        }
-    }
+    // Switch textarea values
+    let switchValue = textareaLeft.value;
+    textareaLeft.value = textareaRight.value;
+    textareaRight.value = switchValue;
 
-    // Manually handle styles for language right button
-    if (isRightLanguageActive) {
-        if (englishBtnRightStyle.classList.contains("active")) {
-            applyButtonStyles(frenchhBtnRightStyle);
-            removeButtonStyles(englishBtnRightStyle);
-            englishBtnRightStyle.classList.remove("active");
-            frenchhBtnRightStyle.classList.add("active");
-        } else {
-            applyButtonStyles(englishBtnRightStyle);
-            removeButtonStyles(frenchhBtnRightStyle);
-            englishBtnRightStyle.classList.add("active");
-            frenchhBtnRightStyle.classList.remove("active");
-        }
-    }
-
-    if (
-        event.target === dropdownBtnLeftStyle ||
-        event.target === dropdownBtnRightStyle
-    ) {
+    //English(Left) -> French(Right)
+    if (isLeftEnglishActive && isRightFrenchActive) {
         removeButtonStyles(englishBtnLeftStyle);
-        removeButtonStyles(englishBtnRightStyle);
-        switchDropDownsLang();
-        return; 
-    }
-}
+        applyButtonStyles(frenchBtnLeftStyle);
+        frenchBtnLeftStyle.classList.add("active");
+        englishBtnLeftStyle.classList.remove("active");
 
-function switchDropDownsLang() {
-    let switchDropdowns = dropdownBtnLeftStyle.value;
-    dropdownBtnLeftStyle.value = dropdownBtnRightStyle.value;
-    dropdownBtnRightStyle.value = switchDropdowns;
+        removeButtonStyles(frenchBtnRightStyle);
+        applyButtonStyles(englishBtnRightStyle);
+        englishBtnRightStyle.classList.add("active");
+        frenchBtnRightStyle.classList.remove("active");
+
+    } else if (isLeftFrenchActive && isRightEnglishActive) {
+        applyButtonStyles(englishBtnLeftStyle);
+        removeButtonStyles(frenchBtnLeftStyle);
+        frenchBtnLeftStyle.classList.remove("active");
+        englishBtnLeftStyle.classList.add("active");
+
+        applyButtonStyles(frenchBtnRightStyle);
+        removeButtonStyles(englishBtnRightStyle);
+        frenchBtnRightStyle.classList.add("active");
+        englishBtnRightStyle.classList.remove("active");
+    }
+
+
+     // Handle English (Left) -> Dropdown (Right)
+     if (isLeftEnglishActive && isRightDropdownActive) {
+        removeButtonStyles(englishBtnLeftStyle);
+        applyButtonStyles(dropdownBtnLeftStyle);
+        dropdownBtnLeftStyle.classList.add("active");
+        englishBtnLeftStyle.classList.remove("active");
+
+        removeButtonStyles(dropdownBtnRightStyle);
+        applyButtonStyles(englishBtnRightStyle);
+        englishBtnRightStyle.classList.add("active");
+        dropdownBtnRightStyle.classList.remove("active");
+
+        let switchDropdowns = dropdownBtnLeftStyle.value;
+        dropdownBtnLeftStyle.value = dropdownBtnRightStyle.value;
+        dropdownBtnRightStyle.value = switchDropdowns;
+
+    } else if (isLeftDropdownActive && isRightEnglishActive) {
+        applyButtonStyles(englishBtnLeftStyle);
+        removeButtonStyles(dropdownBtnLeftStyle);
+        dropdownBtnLeftStyle.classList.remove("active");
+        englishBtnLeftStyle.classList.add("active");
+
+        applyButtonStyles(dropdownBtnRightStyle);
+        removeButtonStyles(englishBtnRightStyle);
+        dropdownBtnRightStyle.classList.add("active");
+        englishBtnRightStyle.classList.remove("active");
+         
+        let switchDropdowns = dropdownBtnLeftStyle.value;
+        dropdownBtnLeftStyle.value = dropdownBtnRightStyle.value;
+        dropdownBtnRightStyle.value = switchDropdowns;
+    }
+    
+    // Handle French (Left) -> Dropdown (Right)
+    if (isLeftFrenchActive && isRightDropdownActive) {
+        removeButtonStyles(frenchBtnLeftStyle);
+        applyButtonStyles(dropdownBtnLeftStyle);
+        dropdownBtnLeftStyle.classList.add("active");
+        frenchBtnLeftStyle.classList.remove("active");
+
+        removeButtonStyles(dropdownBtnRightStyle);
+        applyButtonStyles(frenchBtnRightStyle);
+        frenchBtnRightStyle.classList.add("active");
+        dropdownBtnRightStyle.classList.remove("active");
+
+        let switchDropdowns = dropdownBtnLeftStyle.value;
+        dropdownBtnLeftStyle.value = dropdownBtnRightStyle.value;
+        dropdownBtnRightStyle.value = switchDropdowns;
+
+    } else if (isLeftDropdownActive && isRightFrenchActive) {
+        applyButtonStyles(frenchBtnLeftStyle);
+        removeButtonStyles(dropdownBtnLeftStyle);
+        dropdownBtnLeftStyle.classList.remove("active");
+        frenchBtnLeftStyle.classList.add("active");
+
+        applyButtonStyles(dropdownBtnRightStyle);
+        removeButtonStyles(frenchBtnRightStyle);
+        dropdownBtnRightStyle.classList.add("active");
+        frenchBtnRightStyle.classList.remove("active");
+
+        let switchDropdowns = dropdownBtnLeftStyle.value;
+        dropdownBtnLeftStyle.value = dropdownBtnRightStyle.value;
+        dropdownBtnRightStyle.value = switchDropdowns;
+    }
+
+    // Handle Dropdown (Left) -> English (Right)
+    if (isLeftDropdownActive && isRightEnglishActive) {
+        removeButtonStyles(dropdownBtnLeftStyle);
+        applyButtonStyles(englishBtnLeftStyle);
+        englishBtnLeftStyle.classList.add("active");
+        dropdownBtnLeftStyle.classList.remove("active");
+
+        removeButtonStyles(englishBtnRightStyle);
+        applyButtonStyles(dropdownBtnRightStyle);
+        dropdownBtnRightStyle.classList.add("active");
+        englishBtnRightStyle.classList.remove("active");
+
+    } else if (isLeftEnglishActive && isRightDropdownActive) {
+        applyButtonStyles(dropdownBtnLeftStyle);
+        removeButtonStyles(englishBtnLeftStyle);
+        englishBtnLeftStyle.classList.remove("active");
+        dropdownBtnLeftStyle.classList.add("active");
+
+        applyButtonStyles(englishBtnRightStyle);
+        removeButtonStyles(dropdownBtnRightStyle);
+        englishBtnRightStyle.classList.add("active");
+        dropdownBtnRightStyle.classList.remove("active");
+    }
+
+    // Handle Dropdown (Left) -> French (Right)
+    if (isLeftDropdownActive && isRightFrenchActive) {
+        removeButtonStyles(dropdownBtnLeftStyle);
+        applyButtonStyles(frenchBtnLeftStyle);
+        frenchBtnLeftStyle.classList.add("active");
+        dropdownBtnLeftStyle.classList.remove("active");
+
+        removeButtonStyles(frenchBtnRightStyle);
+        applyButtonStyles(dropdownBtnRightStyle);
+        dropdownBtnRightStyle.classList.add("active");
+        frenchBtnRightStyle.classList.remove("active");
+
+    } else if (isLeftFrenchActive && isRightDropdownActive) {
+        applyButtonStyles(dropdownBtnLeftStyle);
+        removeButtonStyles(frenchBtnLeftStyle);
+        frenchBtnLeftStyle.classList.remove("active");
+        dropdownBtnLeftStyle.classList.add("active");
+
+        applyButtonStyles(frenchBtnRightStyle);
+        removeButtonStyles(dropdownBtnRightStyle);
+        frenchBtnRightStyle.classList.add("active");
+        dropdownBtnRightStyle.classList.remove("active");
+    }
+    
+     // Swap dropdowns if both dropdowns are active
+    if (isLeftDropdownActive && isRightDropdownActive) {
+        let switchDropdowns = dropdownBtnLeftStyle.value;
+        dropdownBtnLeftStyle.value = dropdownBtnRightStyle.value;
+        dropdownBtnRightStyle.value = switchDropdowns;
+    }
 }
 
 // Attach event listeners for the switch container
 switchContainer.addEventListener("click", switchLanguages);
-switchContainer.addEventListener("click", switchDropDownsLang);
 
 // Handle language left container button clicks
 function handleLeftButtonClick(event) {
@@ -325,15 +423,15 @@ function handleLeftButtonClick(event) {
 function handleRightButtonClick(event) {
     if (event.target === englishBtnRightStyle) {
         applyButtonStyles(englishBtnRightStyle);
-        removeButtonStyles(frenchhBtnRightStyle);
+        removeButtonStyles(frenchBtnRightStyle);
         removeButtonStyles(dropdownBtnRightStyle);
         englishBtnRightStyle.classList.add("active");
-        frenchhBtnRightStyle.classList.remove("active");
-    } else if (event.target === frenchhBtnRightStyle) {
-        applyButtonStyles(frenchhBtnRightStyle);
+        frenchBtnRightStyle.classList.remove("active");
+    } else if (event.target === frenchBtnRightStyle) {
+        applyButtonStyles(frenchBtnRightStyle);
         removeButtonStyles(englishBtnRightStyle);
         removeButtonStyles(dropdownBtnRightStyle);
-        frenchhBtnRightStyle.classList.add("active");
+        frenchBtnRightStyle.classList.add("active");
         englishBtnRightStyle.classList.remove("active");
     }
 }
@@ -348,9 +446,9 @@ function handleDropdownClick(event) {
         applyButtonStyles(dropdownBtnLeftStyle);
     } else if (event.target === dropdownBtnRightStyle) {
         removeButtonStyles(englishBtnRightStyle);
-        removeButtonStyles(frenchhBtnRightStyle);
+        removeButtonStyles(frenchBtnRightStyle);
         englishBtnRightStyle.classList.remove("active");
-        frenchhBtnRightStyle.classList.remove("active");
+        frenchBtnRightStyle.classList.remove("active");
         applyButtonStyles(dropdownBtnRightStyle);
     }
 }
@@ -359,21 +457,22 @@ function handleDropdownClick(event) {
 englishBtnLeftStyle.addEventListener("click", handleLeftButtonClick);
 frenchBtnLeftStyle.addEventListener("click", handleLeftButtonClick);
 englishBtnRightStyle.addEventListener("click", handleRightButtonClick);
-frenchhBtnRightStyle.addEventListener("click", handleRightButtonClick);
+frenchBtnRightStyle.addEventListener("click", handleRightButtonClick);
 dropdownBtnLeftStyle.addEventListener("click", handleDropdownClick);
 dropdownBtnRightStyle.addEventListener("click", handleDropdownClick);
 
-const apiKey = 'AIzaSyDbiyGIuxgyxf_7lIyO1UcltB7Ikbq1gWE';
-
 async function translateText(text, sourceLang, targetLang) {
-    const url = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}&q=${encodeURIComponent(text)}&source=${sourceLang}&target=${targetLang}`;
+    const response = await fetch('/api/translate', {
+        method: 'POST',
+        body: JSON.stringify({ text, sourceLang, targetLang }),
+        headers: { 'Content-Type': 'application/json' },
+    });
     
-    try {
-        const response = await fetch(url, { method: 'POST' });
-        const data = await response.json();
-        return data.data.translations[0].translatedText;
-    } catch (error) {
-        console.error('Error:', error);
+    if (!response.ok) {
+        console.error('Error:', response.statusText);
         return '';
     }
+
+    const data = await response.json();
+    return data.translatedText;
 }
