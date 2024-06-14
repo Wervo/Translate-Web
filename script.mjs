@@ -461,17 +461,18 @@ frenchBtnRightStyle.addEventListener("click", handleRightButtonClick);
 dropdownBtnLeftStyle.addEventListener("click", handleDropdownClick);
 dropdownBtnRightStyle.addEventListener("click", handleDropdownClick);
 
-
-
 async function translateText(text, sourceLang, targetLang) {
-    const url = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}&q=${encodeURIComponent(text)}&source=${sourceLang}&target=${targetLang}`;
+    const response = await fetch('/api/translate', {
+        method: 'POST',
+        body: JSON.stringify({ text, sourceLang, targetLang }),
+        headers: { 'Content-Type': 'application/json' },
+    });
     
-    try {
-        const response = await fetch(url, { method: 'POST' });
-        const data = await response.json();
-        return data.data.translations[0].translatedText;
-    } catch (error) {
-        console.error('Error:', error);
+    if (!response.ok) {
+        console.error('Error:', response.statusText);
         return '';
     }
+
+    const data = await response.json();
+    return data.translatedText;
 }

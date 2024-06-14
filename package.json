@@ -1,0 +1,12 @@
+{
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "node-fetch": "^3.3.2"
+  },
+  "scripts": {
+    "build": "echo 'Running build script...'",
+    "start": "node --experimental-modules script.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
